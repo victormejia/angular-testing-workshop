@@ -1,0 +1,19 @@
+<div class="ui icon input">
+  <input appNonNumeric type="text" placeholder="Search...">
+</div>
+<table class="ui selectable celled table">
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Name</th>
+      <th>Specialty</th>
+      <th>Secret Address</th>
+      <th class="phone">Phone</th>
+      <th>DOB</th>
+      <th>Last Message</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr app-hacker *ngFor="let hacker of hackers" [hacker]="hacker" (click)="goToDetails(hacker.id)"></tr>
+  </tbody>
+</table>

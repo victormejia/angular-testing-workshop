@@ -1,0 +1,26 @@
+header {
+  height: 50px;
+  background: #1A2129;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index: 1;
+
+  h2 {
+    color: #fff;
+    margin: 0;
+    padding: 10px;
+    position: absolute;
+    left: 10px;
+  }
+}
+
+.outlet {
+  margin-left: 200px;
+  margin-top: 80px;
+}
+
+.content {
+  width: 90%;
+  margin: 20px auto;
+}

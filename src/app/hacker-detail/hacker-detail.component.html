@@ -1,0 +1,19 @@
+<div *ngIf="hacker" class="ui card">
+  <div class="image">
+    <img [src]="hacker.avatar">
+  </div>
+  <div class="content">
+    <p class="header">{{hacker.name}}</p>
+    <div class="meta">
+      <span class="date">{{hacker.ip}}</span>
+      <p class="date">pwd: {{hacker.password}}</p>
+    </div>
+    <div class="description">
+      {{hacker.statusMessage}}
+    </div>
+  </div>
+  <div class="extra content">
+    <app-status [status]="hacker.status"></app-status>
+    {{hacker.status}}
+  </div>
+</div>

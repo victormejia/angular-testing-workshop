@@ -1,0 +1,33 @@
+.menu {
+  position: fixed;
+  width: 200px;
+  top: 50px;
+  bottom: 0px;
+  background-color: #1a2229;
+
+  ul {
+    padding: 0;
+    margin: 0;
+
+    li {
+      list-style: none;
+
+      > a {
+        width: 200px;
+        display: block;
+        padding: 15px 20px;
+        color: #9d9d9d;
+
+        &:hover {
+          background-color: #232a2f;
+          color: #fff;
+        }
+
+        &.active {
+          background-color: #5BB5B7;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

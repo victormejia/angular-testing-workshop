@@ -1,0 +1,9 @@
+<td>
+  <app-status [status]="hacker?.status" (newStatus)="updateStatus($event)"></app-status>
+</td>
+<td>{{hacker?.name}}</td>
+<td>{{hacker?.specialty}}</td>
+<td>{{hacker?.address}} {{hacker?.cityStateZip}}</td>
+<td>{{hacker?.phone}}</td>
+<td>{{hacker?.dob | shortDate}}</td>
+<td>{{statusMessage}}</td>
