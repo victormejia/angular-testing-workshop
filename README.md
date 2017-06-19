@@ -29,7 +29,7 @@ The following commands should work:
 
 `npm start`: should open your browser and display the app we will be working with:
 
-![app start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/app-initial.png?token=ACJhTOrmFMjNcU0C286o-GT50zpQORGLks5ZULqawA%3D%3D)
+![app start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/app-screenshot.png)
 
 `npm test`: should yield output similar to this (no errors):
 
@@ -40,7 +40,7 @@ The following commands should work:
 We will be working on a new branch and working through the modules. In the last module, we will be opening a pull request and using TravisCI to run our builds.
 
 
-![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/test-initial.png?token=ACJhTHM9t5Ylx4ps80q8cXZR-M9wXTNzks5ZULqewA%3D%3D)
+![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/test-initial.png)
 
 </details>
 
@@ -53,7 +53,7 @@ We will be working on a new branch and working through the modules. In the last 
 
 Inside the Angular project, running `ng test --single-run --code-coverage` will output something like this:
 
-![terminal](https://raw.githubusercontent.com/victormejia/fluent-angular-testing/master/screenshots/Screen%20Shot%202017-06-07%20at%202.57.12%20PM.png?token=ACJhTGW7iuXepkVCJU-fm0f1qwnf9eVYks5ZQtklwA%3D%3D)
+![terminal](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/Screen%20Shot%202017-06-07%20at%202.57.12%20PM.png)
 
 It's a bit difficult to know which tests exactly ran, so let's configure our terminal spec reporting. To do so, you will need to install the `karma-spec-reporter` plugin and configure `karma.conf.js`. It should already be included when you ran the initial `npm install`.
 
@@ -65,7 +65,7 @@ It's a bit difficult to know which tests exactly ran, so let's configure our ter
 
 Now, when you run your tests, you should get something like this:
 
-![terminal](https://raw.githubusercontent.com/victormejia/fluent-angular-testing/master/screenshots/Screen%20Shot%202017-06-08%20at%2011.34.09%20AM.png?token=ACJhTD_wEnmr2FnywInvUh0asgw0YA27ks5ZQtkswA%3D%3D)
+![terminal](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/Screen%20Shot%202017-06-08%20at%2011.34.09%20AM.png)
 
 </details>
 
@@ -737,7 +737,7 @@ istanbulThresholdReporter: {
 
 Now, if any of these stats fall below the specified thresholds, running `ng test` will fail, even if each spec is passing:
 
-![coverage](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/coverage.png?token=ACJhTGElO-ki1E41cf32wkGTJeJzsIkEks5ZUFXMwA%3D%3D)
+![coverage](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/coverage.png)
 
 ### Preventing bad commits
 
@@ -794,25 +794,17 @@ There is a a lot going on here. We are instructing TravisCI to use Ubuntu Trusty
 
 Once you open a PR or push any branch, it will trigger a TravisCI build:
 
-![travis ci building](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-building.png?token=ACJhTIMmlKx8BkQj91kTAakK3a3V8TFUks5ZULsGwA%3D%3D)
-
-and it will show as a "pending" check on GitHub:
-
-![travis ci pending](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-gh.png?token=ACJhTG0MT6XF1dMtsrfYsPOGIVYJ0Upsks5ZULsewA%3D%3D)
+![travis ci building](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-building.png)
 
 If the build fails, you will know both on GitHub and on TravisCI:
 
-![travis ci failed](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-failed.png?token=ACJhTKzOHIq7IHj85YLDqXchMSDVTuNaks5ZULsvwA%3D%3D)
-
-![travis ci failed log](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-failed-log.png?token=ACJhTJt34b4bkIejBxntp72FtKLY-Lx-ks5ZULtKwA%3D%3D)
+![travis ci failed](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-failed-log.png)
 
 Once fixed, repush your branch, and the build triggers again:
 
-![travis ci passed](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-passed.png?token=ACJhTD8wJQCg6JbRhX7d9hC0UqBIES_qks5ZULthwA%3D%3D)
-
-![travis ci passed gh](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-passed-gh.png?token=ACJhTGt5nBm3Fibb2owhy8sO_1JS3Aiqks5ZULtywA%3D%3D)
+![travis ci passed](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/travis-ci-passed-gh.png)
 
 In addition, since we have enabled reporting with Codecov, we get a codecov bot reporting the coverage:
 
-![codecov bot](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/codecov-bot.png?token=ACJhTAvm2XF2bxTkhRFyGskTMWlvqiHfks5ZULuGwA%3D%3D)
+![codecov bot](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/codecov-bot.png)
 </details>
