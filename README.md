@@ -25,7 +25,7 @@ You will need to do the following:
   * fork this repo to your GitHub account
   * clone your fork locally
   * Globally install the Angular CLI: `npm install -g @angular/cli`
-  * inside `fluent-angular-testing`, install dependencies: `npm install`
+  * inside `fluent-angular-testing-workshop`, install dependencies: `npm install`
 
 ### Verify
 
