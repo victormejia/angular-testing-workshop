@@ -592,7 +592,7 @@ import { mockHackers } from '../core/helpers.spec';
 <details>
   <summary>Details</summary>
 
-**Code**: `src/app/hacker-list`
+**Code**: `src/app/core/services`
 
 When it comes to testing services in Angular, you could write *isolated* tests (no Angular testing utilities) or *shallow* tests (using Angular utilities like the `TestBed` and the `inject` function). I recommend writing isolated tests for services, as they are essentially just a class, as adding in the Angular helping utilities will probably just add complexity to your tests. If your service depends on other services, you can easily stub them out.
 
