@@ -1040,3 +1040,10 @@ In addition, since we have enabled reporting with Codecov, we get a codecov bot 
 
 ![codecov bot](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/codecov-bot.png)
 </details>
+
+## Resources
+One of the things I love about the Angular community is its willingness to share awesome content to make your every day developer life even better. This isn't the only resource on testing Angular. I recommend you also check out these awesome resources:
+
+  * [Official Angular Testing Guide](https://angular.io/guide/testing) @ angular.io
+  * ["Angular Testing Guide"](https://medium.com/google-developer-experts/angular-2-testing-guide-a485b6cb1ef0) by Gerard Sans
+  * [Topcoders Angular Testing Workshop](https://github.com/joeeames/TopCoders-angular2-testing) by Joe Eames
