@@ -37,13 +37,13 @@ The following commands should work:
 
 `npm test`: should yield output similar to this (no errors):
 
+![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/npm-test-initial.png)
+
 ### Create branch
 
 `git checkout -b solution`
 
 We will be working on a new branch and working through the modules. In the last module, we will be opening a pull request and using TravisCI to run our builds.
-
-![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/npm-test-initial.png)
 
 </details>
 
