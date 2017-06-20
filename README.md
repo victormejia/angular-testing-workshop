@@ -52,6 +52,13 @@ We will be working on a new branch and working through the modules. In the last 
 <details>
   <summary>Details</summary>
 
+### Why test?
+
+The [Angular Testing Guide](https://angular.io/guide/testing) puts it very clearly:
+  * Unit tests guard against breaking existing code (“regressions”) when we make changes.
+  * Unit tetss clarify what the code does (use as documentation).
+  * They reveal mistakes in design and implementation. Tests force us to look at our code from many angles and also make your code more modular.
+
 ### Jasmine
   * A BDD framework for JS code
   * standalone, no DOM required
