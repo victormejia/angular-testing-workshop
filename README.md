@@ -718,7 +718,7 @@ When testing this, we can use the `debugElement` and `By` to query for the input
 
 ### Tasks:
 Complete the following tests:
-  * `should allow regular text input`: You should query for the `input` element, and trigger the `keydown` event handler. (TODO: detect changes?)
+  * `should allow regular text input`: You should query for the `input` element, and trigger the `keydown` event handler. Create a mock event, and call `input.triggerEventHandler('keydown', event)`.
   * `should not allow numeric text input for input elements`: Similar setup to the first one, except the event's key property should be a string containing a number
   * `should allow regular text input for textarea elements`
   * `should not allow numeric text input for textarea elements`
