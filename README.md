@@ -49,6 +49,217 @@ We will be working on a new branch and working through the modules. In the last 
 
 ## Module 1: Unit Testing With Jasmine
 
+<details>
+  <summary>Details</summary>
+
+### Jasmine
+  * A BDD framework for JS code
+  * standalone, no DOM required
+  * Clean syntax: describe, it, expect
+  * Others: Mocha, QUnit, Jest (Facebook)
+  * Often used with a mocking library like Sinon
+
+### Sample Module
+
+```js
+const SuperAwesomeModule = {
+  featureA: () => {
+    ...
+  },
+  featureB: () => {
+    ...
+  }
+}
+```
+
+### Suites
+  * test suite begins with "describe"
+  * takes a string (spec suite title) and a function (block of code being tested)
+  * suites can be nested
+
+```js
+describe('SuperAwesomeModule', () => {
+  describe('featureA', () => {
+
+  });
+
+  describe('featureB', () => {
+
+  });
+});
+```
+
+### Specs
+  * call global Jasmine function `it(<string>, <fn>)`
+  * a spec contains one or more expectations
+  * expectation: an assertion that is either true or false.
+  * spec with all true expectations: pass
+  * spec with one or more false expectations: fail
+
+```js
+describe('SuperAwesomeModule', () => {
+  describe('featureA', () => {
+    it('should calculate some super awesome calculation', () => {
+        ...
+    });
+
+    it('should also do this correctly', () => {
+        ...
+    });
+  });
+});
+```
+
+### Expectations and Matchers
+  * call global Jasmine function `expect(<actual>).<matcher(expectedValue)>`
+  * a matcher implements boolean comparison between the actual value and the expected value
+
+```js
+describe('SuperAwesomeModule', () => {
+  describe('featureA', () => {
+    it('should calculate some super awesome calculation', () => {
+        expect(SuperAwesomeModule.featureA([1, 2, 4]).toEqual(7);
+    });
+
+    it('should also do this correctly', () => {
+        expect(SuperAwesomeModule.featureB('...').toBe(true);
+    });
+  });
+});
+```
+
+### Included Matchers
+```js
+expect(foo).toBe(true); // uses JS strict equality
+expect(foo).not.toBe(true);
+expect(foo).toEqual(482); // uses deep equality, recursive search through objects
+expect(foo).toBeDefined();
+expect(foo).not.toBeDefined();
+expect(foo).toBeUndefined();
+expect(foo).toBeTruthy(); // boolean cast testing
+expect(foo).toBeFalsy();
+expect(foo).toContain('student'); // find item in array
+expect(e).toBeLessThan(pi);
+expect(pi).toBeGreaterThan(e);
+expect(a).toBeCloseTo(b, 2); // a to be close to b by 2 decimal points
+```
+
+### Included Matchers: Exceptions
+```js
+expect(() => {
+  foo(1, '2')
+}).toThrowError();
+
+expect(() => {
+  foo(1, '2')
+}).toThrow(new Error('Invalid parameter type.')
+```
+
+### Setup and Teardown
+```js
+describe('ApiService', function() {
+  const serviceInTest;
+
+  beforeEach(function() {
+    serviceInTest = new ApiService();
+  });
+
+  afterEach(function() {
+   ...
+  });
+
+  it('retrieves data', function() {
+    ...
+  });
+
+  it('updates data', function() {
+    ...
+  });
+});
+```
+
+
+### Disabling suites/specs
+```js
+describe('SuperAwesomeModule', () => {
+  xdescribe('featureA', () => {
+    it('should ...', () => {
+
+    });
+
+    it('should ...', () => {
+
+    });
+  });
+
+  describe('featureB', () => {
+    xit('should ...', () => {
+
+    });
+
+    it('should ...', () => {
+
+    });
+  });
+});
+```
+
+### Spies
+  * test double functions called spies.
+  * can stub any function and tracks calls to it and all arguments.
+  * A spy only exists in the describe or it block in which it is defined, and will be removed after each spec.
+```js
+describe('SuperAwesomeModule', function() {
+  beforeEach(function() {
+    // track all calls to SuperAwesomeModule.asyncHelperFunction()
+    // and return a mock response
+    spyOn(SuperAwesomeModule, 'asyncHelperFunction').and.returnValue(Promise.resolve(mockData))
+  });
+
+  describe('featureA', function() {
+    it('should ...', function() {
+      expect(SuperAwesomeModule.featureA(x)).toBe(y);
+
+      // matchers for spies
+      expect(SuperAwesomeModule.coolHelperFunction).toHaveBeenCalled();
+    });
+  });
+});
+```
+
+
+### Asynchronous support
+  * spec will not start until the done function is called in the call to beforeEach
+  * spec will not complete until its done is called.
+  * Default timeout is 5 seconds, can override: jasmine.DEFAULT_TIMEOUT_INTERVAL
+
+```js
+describe("long asynchronous specs", function() {
+  beforeEach(function(done) {
+    done();
+  }, 1000);
+
+  it("takes a long time", function(done) {
+    setTimeout(function() {
+      done();
+    }, 9000);
+  }, 10000);
+
+  afterEach(function(done) {
+    done();
+  }, 1000);
+});
+```
+
+### Tasks
+
+We will test drive the implementation of a `scoreCalculator` function (sums up scores) that satisfies the following:
+  * `should work with one number`
+  * `should work with more than one score`
+  * `should treat negative scores as 0`
+  * `should return zero with empty input`
+</details>
+
 ## Module 2: Configuring Terminal Reporting
 
 <details>
