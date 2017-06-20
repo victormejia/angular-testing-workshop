@@ -9,12 +9,10 @@ export class NonNumericDirective {
 
   @HostListener('keydown', ['$event'])
   onKeydown(event) {
-    event.preventDefault();
-
     const numberRegex = /[0-9]/;
 
-    if (!numberRegex.test(event.key)) {
-      this.element.nativeElement.value = event.key;
+    if (numberRegex.test(event.key)) {
+      event.preventDefault();
     }
   }
 

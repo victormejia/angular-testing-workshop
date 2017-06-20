@@ -30,38 +30,38 @@ describe('NonNumericDirective: Solution', () => {
   it('should allow regular text input for input elements', () => {
     const input = fixture.debugElement.query(By.css('input'));
 
-    const event = { key: 'x', preventDefault: () => {} };
+    const event = { key: 'x', preventDefault: jasmine.createSpy('preventDefault') };
     input.triggerEventHandler('keydown', event);
 
-    expect(input.nativeElement.value).toBe('x');
+    expect(event.preventDefault).not.toHaveBeenCalled();
   });
 
   it('should not allow numeric text input for input elements', () => {
     const input = fixture.debugElement.query(By.css('input'));
 
-    const event = { key: '2', preventDefault: () => {} };
+    const event = { key: '2', preventDefault: jasmine.createSpy('preventDefault') };
     input.triggerEventHandler('keydown', event);
 
-    expect(input.nativeElement.value).toBe('');
+    expect(event.preventDefault).toHaveBeenCalled();
   });
 
   it('should allow regular text input for textarea elements', () => {
     const input = fixture.debugElement.query(By.css('textarea'));
 
-    const event = { key: 'x', preventDefault: () => {} };
+    const event = { key: 'x', preventDefault: jasmine.createSpy('preventDefault') };
     input.triggerEventHandler('keydown', event);
 
-    expect(input.nativeElement.value).toBe('x');
+    expect(event.preventDefault).not.toHaveBeenCalled();
 
   });
 
   it('should not allow numeric text input for textarea elements', () => {
     const input = fixture.debugElement.query(By.css('textarea'));
 
-    const event = { key: '2', preventDefault: () => {} };
+    const event = { key: '2', preventDefault: jasmine.createSpy('preventDefault') };
     input.triggerEventHandler('keydown', event);
 
-    expect(input.nativeElement.value).toBe('');
+    expect(event.preventDefault).toHaveBeenCalled();
   });
 
 });
