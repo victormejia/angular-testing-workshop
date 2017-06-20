@@ -228,7 +228,7 @@ describe('SuperAwesomeModule', function() {
       expect(SuperAwesomeModule.featureA(x)).toBe(y);
 
       // matchers for spies
-      expect(SuperAwesomeModule.coolHelperFunction).toHaveBeenCalled();
+      expect(SuperAwesomeModule.asyncHelperFunction).toHaveBeenCalled();
     });
   });
 });
@@ -241,12 +241,12 @@ describe('SuperAwesomeModule', function() {
   * Default timeout is 5 seconds, can override: jasmine.DEFAULT_TIMEOUT_INTERVAL
 
 ```js
-describe("long asynchronous specs", function() {
+describe('long asynchronous specs', function() {
   beforeEach(function(done) {
     done();
   }, 1000);
 
-  it("takes a long time", function(done) {
+  it('takes a long time', function(done) {
     setTimeout(function() {
       done();
     }, 9000);
