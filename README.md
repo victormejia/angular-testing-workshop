@@ -43,8 +43,7 @@ The following commands should work:
 
 We will be working on a new branch and working through the modules. In the last module, we will be opening a pull request and using TravisCI to run our builds.
 
-
-![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/test-initial.png)
+![test start](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/npm-test-initial.png)
 
 </details>
 
@@ -61,10 +60,10 @@ Inside the Angular project, running `ng test --single-run --code-coverage` will 
 
 It's a bit difficult to know which tests exactly ran, so let's configure our terminal spec reporting. To do so, you will need to install the `karma-spec-reporter` plugin and configure `karma.conf.js`. It should already be included when you ran the initial `npm install`.
 
-**tasks**:
+**Tasks**:
 
   * in the `plugins`, require the `karma-spec-reporter`: `require('karma-spec-reporter')`
-  * in the `reporters` property, replace `'progress'` with `'spec'`
+  * in the `reporters`, replace `'progress'` with `'spec'`
   * in the `reports` array inside the `coverageIstanbulReporter` object, add `'text-summary'`
 
 Now, when you run your tests, you should get something like this:
@@ -80,10 +79,10 @@ Now, when you run your tests, you should get something like this:
 
 **Code**: `src/app/core/menu`
 
-In this module, we will learn the basic steps in setting up unit tests using the Angular Testing Utilities. There are [3 standard methods of testing Angular components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d):
+In this module, we will learn the basic steps in setting up unit tests using the Angular testing utilities. There are [3 standard methods of testing Angular components](https://vsavkin.com/three-ways-to-test-angular-2-components-dcea8e90bd8d):
 
   * **Isolated** tests: we treat the component class as vanilla JS. Don't render the component.
-  * **Shallow** tests: Use the Angular testing utilities to render the component, but don't render children components
+  * **Shallow** tests: use the Angular testing utilities to render the component, but don't render children components.
   * **Integration** tests: **not** end-to-end tests here. In this method we render children components also.
 
 When testing components, we will be using the **shallow** method of testing components, and when our components take in inputs, and/or we want to test outputs, we will use a test host component.
@@ -137,13 +136,13 @@ it('should render two menu items', () => {
 });
 ```
 
-We use the `debugElement`'s `queryAll` method to retrieve all `DebugElements` that satisfy the search. We use the `By.css` utitlity to do so.
+We use the `debugElement`'s `queryAll` method to retrieve all `DebugElements` that satisfy the search, and using the `By.css` utitlity.
 
 Running this, you will get an error:
 
 `Can't bind to 'routerLink' since it isn't a known property of 'a'`.
 
-Since we aren't importing the module for routing, Angular doesn't recognize this directive. However, we want to **shallow** test, so we will tell Angular to ignore components and directives not included in the `declarations` property by using the `NO_ERRORS_SCHEMA` constant
+Since we aren't importing the module for routing, Angular doesn't recognize this directive. However, we want to **shallow** test, so we will tell Angular to ignore components and directives not included in the `declarations` property by using the `NO_ERRORS_SCHEMA` constant:
 
 ```js
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -166,18 +165,18 @@ Write a spec `'should render a different hacker link title'`.
 
 </details>
 
-## Module 4: Testing components with I/O and change detection
+## Module 4: Testing Components with I/O and Change Detection
 
 <details>
   <summary>Details</summary>
 
 **Code**: `src/app/status`
 
-In this module, we will learn how to test components with inputs and outputs. The best way to test this kind of components is by usint a *test host component*. Essentially, in your test you create a parent component which houses the component you want to test. This way, it's very easy to feed it inputs, and to listen for and output events.
+In this module, we will learn how to test components with inputs and outputs. The best way to test this kind of components is by using a *test host component*. Essentially, in your test you create a parent component which houses the component you want to test. This way, it's very easy to feed it inputs, and to listen for any output events.
 
 We will be looking at the `StatusComponent`, which has the following behavior:
 
-https://cl.ly/2c0o0o1S3C0T
+![status component](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/status-component.gif)
 
 This is how it is used:
 
@@ -185,7 +184,16 @@ This is how it is used:
 <app-status [status]="hacker.status" (newStatus)="updateStatus($event)"></app-status>
 ```
 
-It takes in as input a `status` which can be `'danger'`, `'safe'`, or `'warning'`. It also exposes a `newStatus` event, and whenever fired, it will call the specified function with the new message. If we take a look at the `StatusComponent` implementation, the `newStatus` event will get emitted when the status component is clicked on. With this knowledge, let's create a test host component:
+It takes in as input a `status` which can be `'danger'`, `'safe'`, or `'warning'`. It also exposes a `newStatus` event, and whenever fired, it will call the specified function with the new message. If we take a look at the `StatusComponent` class and template, the `newStatus` event will get emitted when the status component is clicked on.
+
+```html
+<div class="status-pulse" (click)="refreshStatus()">
+  <span class="pulse" [ngClass]="color"></span>
+  <span class="dot" [ngClass]="color"></span>
+</div>
+```
+
+With this knowledge, let's create a test host component:
 
 ```js
 @Component({
@@ -238,7 +246,7 @@ For the last test:
   * Assert: the `testHost.updateStatus` function/spy should have been called. You can also assert things about the argument.
 </details>
 
-## Module 5: Testing components with (async) service dependencies
+## Module 5: Testing Components with (Async) Service dependencies
 
 <details>
   <summary>Details</summary>
@@ -276,7 +284,7 @@ const mockRouter = {
 };
 ```
 
-At the top of the describe block, in addition to declaring variables for the `component` and `fixture`, we also want to declare a variable to hold a reference to the injected service:
+At the top of the describe block, in addition to declaring variables for the `component` and `fixture`,we also want to declare a variable to hold a reference to the injected service:
 
 ```js
 let component: HackerListComponent;
@@ -298,7 +306,7 @@ Suppose one of your components method performs async work:
 
 ```js
 ngOnInit() {
-  this.apiService.getProducts()
+  this.api.getProducts()
     .then((data: any) => {
       this.products = data;
     });
@@ -308,7 +316,7 @@ ngOnInit() {
 In your test, you should first spy on the service mock and return a controlled response:
 
 ```js
-spyOn(apiService, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
+spyOn(api, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
 ```
 
 Then, there are two methods of testing this:
@@ -319,7 +327,7 @@ The first is to use the `async` testing utility, which is a function that return
 
 ```js
 it('...', async(() => {
-  spyOn(apiService, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
+  spyOn(api, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
 
   component.ngOnInit();
 
@@ -334,7 +342,7 @@ The second method is to use the `fakeAsync` testing utility. It allows you to wr
 
 ```js
 it('...', fakeAsync(() => {
-  spyOn(apiService, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
+  spyOn(api, 'getProducts').and.returnValue(Promise.resolve(mockProducts));
 
   component.ngOnInit();
 
@@ -368,7 +376,7 @@ import { mockHackers } from '../core/helpers.spec';
 
 </details>
 
-## Module 6: Testing services
+## Module 6: Testing Services
 
 <details>
   <summary>Details</summary>
@@ -443,7 +451,7 @@ Write the following unit tests for both the `getHackers` and `getHackerDetails` 
 
 </details>
 
-## Module 7: Testing directives
+## Module 7: Testing Directives
 
 <details>
   <summary>Details</summary>
@@ -453,25 +461,27 @@ Write the following unit tests for both the `getHackers` and `getHackerDetails` 
 An attribute directive is used to modify behavior of an existing element or component. Suppose we have a directive that can be added to an input element to prevent numeric input. We can easily achieve this using a `@HostListener` and listening for the `keydown` event.
 
 ```js
-import { Directive, HostListener } from '@angular/core';
+import { Directive, HostListener, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appNonNumeric]'
 })
 export class NonNumericDirective {
 
-  constructor() { }
+  constructor(private element: ElementRef) { }
 
-  @HostListener('document:keydown', ['$event'])
+  @HostListener('keydown', ['$event'])
   onKeydown(event) {
+    event.preventDefault();
+
     const numberRegex = /[0-9]/;
 
-    if (numberRegex.test(event.key)) {
-      event.preventDefault();
+    if (!numberRegex.test(event.key)) {
+      this.element.nativeElement.value = event.key;
     }
   }
-
 }
+
 ```
 
 And its usage:
@@ -556,7 +566,7 @@ describe('UppercasePipe', () => {
 In these exercises, we are going to test-drive the implementation of the `ShortDatePipe`, which will transform an input ISO date string and return a "short date" format.
 
 ```
-'1972-08-23T15:22:34.694Z' ----> '06/01/1960, 04:01am'
+'1960-06-01T11:01:12.720Z' ----> '06/01/1960, 04:01am'
 ```
 
 Complete the following tests:
@@ -573,7 +583,7 @@ You can use this sample data:
 
 </details>
 
-## Module 9: Testing routed components
+## Module 9: Testing Routed Components
 
 <details>
   <summary>Details</summary>
@@ -627,7 +637,7 @@ const mockActivatedRoute = {
 };
 ```
 
-Using `Observable.of` is a very convinient way of wrapping objects into an observable.
+Using `Observable.of()` is a very convinient way of wrapping objects into an observable.
 
 When configuring the `TestBed`, for the providers you instruct Angular to use these when the service dependencies are injected:
 
@@ -685,7 +695,7 @@ Install the `karma-istanbul-threshold` module:
 npm i karma-istanbul-threshold --save-dev
 ```
 
-and add it to the plugins:
+and add it to the plugins in `karma.conf.js`:
 
 ```js
 plugins: [
