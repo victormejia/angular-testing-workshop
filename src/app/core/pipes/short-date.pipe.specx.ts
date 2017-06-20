@@ -24,17 +24,17 @@ describe('ShortDatePipe: Solution', () => {
 
   it('returned value should contain time hh:mm[am|pm]', () => {
     const isoString = '1960-06-01T11:01:12.720Z';
-    expect(pipe.transform(isoString)).toContain('04:01am');
+    expect(pipe.transform(isoString)).toContain('11:01am');
   });
 
   it('should convert ISO string to correct date format (am)', () => {
     const isoString = '1960-06-01T11:01:12.720Z';
-    expect(pipe.transform(isoString)).toBe('06/01/1960, 04:01am');
+    expect(pipe.transform(isoString)).toBe('06/01/1960, 11:01am');
   });
 
   it('should convert ISO string to correct date format (pm)', () => {
     const isoString = '1980-10-04T21:35:51.869Z';
-    expect(pipe.transform(isoString)).toBe('10/04/1980, 02:35pm');
+    expect(pipe.transform(isoString)).toBe('10/04/1980, 09:35pm');
   });
 
 });

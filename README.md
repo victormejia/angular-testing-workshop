@@ -777,7 +777,7 @@ describe('UppercasePipe', () => {
 In these exercises, we are going to test-drive the implementation of the `ShortDatePipe`, which will transform an input ISO date string and return a "short date" format.
 
 ```
-'1960-06-01T11:01:12.720Z' ----> '06/01/1960, 04:01am'
+'1960-06-01T11:01:12.720Z' ----> '06/01/1960, 11:01am'
 ```
 
 Complete the following tests:
@@ -789,8 +789,8 @@ Complete the following tests:
   * `should convert ISO string to correct date format (pm)`
 
 You can use this sample data:
-  * `'1972-08-23T15:22:34.694Z' ----> '06/01/1960, 04:01am'`
-  * `'1980-10-04T21:35:51.869Z' ----> '10/04/1980, 02:35pm'`
+  * `'1972-08-23T15:22:34.694Z' ----> '06/01/1960, 11:01am'`
+  * `'1980-10-04T21:35:51.869Z' ----> '10/04/1980, 09:35pm'`
 
 </details>
 
