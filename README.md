@@ -1,6 +1,6 @@
 # Fluent Conf 2017 Workshop: Turbocharged Testing With Angular
 
-You've been tasked to deliver a high-quality, well-tested dashboard to track The Grid's most prominent hackers!
+You've been tasked to deliver a high-quality, well-tested dashboard to track The Grid's most prominent hackers! We will be learning all about unit testing Angular apps.
 
 ![app](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/app-screenshot.png)
 
