@@ -1,4 +1,4 @@
-# Fluent Conf 2017 Workshop: Turbocharged Angular Testing
+# Fluent Conf 2017 Workshop: Turbocharged Testing With Angular
 
 You've been tasked to deliver a high-quality, well-tested dashboard to track The Grid's most prominent hackers!
 
@@ -44,6 +44,13 @@ The following commands should work:
 `git checkout -b solution`
 
 We will be working on a new branch and working through the modules. In the last module, we will be opening a pull request and using TravisCI to run our builds.
+
+### Exercises and Solution
+The empty exercise files you'll be completing end in `*.spec.ts`. The solutions are right next to the file, which are named `*.specx.ts`. If you to switch between running your specs vs. the solution, in `src/app.test.ts`, change the regex for the specs to:
+
+```js
+const context = require.context('./', true, /\.specx\.ts$/);
+```
 
 </details>
 
