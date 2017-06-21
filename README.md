@@ -449,7 +449,7 @@ With the setup out of the way, we are now ready to write some tests.
 Complete the following tests:
   * `should set pulse color to green when input is "safe"`
   * `should set pulse color to yellow when input is "warning"`
-  * `should set pulse color to yellow when input is "warning"`
+  * `should set pulse color to red when input is "danger"`
   * `should set pulse color to green when input is undefined`
   * `should output a new message when clicked`
 
