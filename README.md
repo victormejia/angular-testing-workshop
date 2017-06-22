@@ -1054,3 +1054,4 @@ One of the things I love about the Angular community is its willingness to share
   * [Official Angular Testing Guide](https://angular.io/guide/testing) @ angular.io
   * ["Angular Testing Guide"](https://medium.com/google-developer-experts/angular-2-testing-guide-a485b6cb1ef0) by Gerard Sans
   * [Topcoders Angular Testing Workshop](https://github.com/joeeames/TopCoders-angular2-testing) by Joe Eames
+  * [Turbocharge Your Angular Testing Workflow](https://www.youtube.com/watch?v=wj3dStoEhso), talk @ NG-Conf 2017
