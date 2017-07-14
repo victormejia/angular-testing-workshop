@@ -34,7 +34,7 @@
     "semantic-ui-input": "^2.2.10",
     "semantic-ui-reset": "^2.2.10",
     "semantic-ui-table": "^2.2.10",
-    "zone.js": "^0.8.4"
+    "zone.js": "0.8.5"
   },
   "devDependencies": {
     "@angular/cli": "1.0.6",
