@@ -62,44 +62,44 @@ describe('HackerListComponent: Solution', () => {
 
     }));
 
-    it('sets initial data (using fakeAsync)', fakeAsync(() => {
-      spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
+  //   it('sets initial data (using fakeAsync)', fakeAsync(() => {
+  //     spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
 
-      fixture.detectChanges();
+  //     fixture.detectChanges();
 
-      flush();
+  //     flush();
 
-      expect(component.hackers).toEqual(mockHackers);
-    }));
+  //     expect(component.hackers).toEqual(mockHackers);
+  //   }));
 
-    it('renders correct number of tbody rows', fakeAsync(() => {
-      spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
+  //   it('renders correct number of tbody rows', fakeAsync(() => {
+  //     spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
 
-      fixture.detectChanges();
-      flush();
-      fixture.detectChanges();
+  //     fixture.detectChanges();
+  //     flush();
+  //     fixture.detectChanges();
 
-      const hackerRows = fixture.debugElement.queryAll(By.css('tr[app-hacker]'));
+  //     const hackerRows = fixture.debugElement.queryAll(By.css('tr[app-hacker]'));
 
-      expect(hackerRows.length).toEqual(mockHackers.length);
-    }));
+  //     expect(hackerRows.length).toEqual(mockHackers.length);
+  //   }));
 
-  });
+  // });
 
-  describe('click on hacker', () => {
-    it('should navigate to the hacker/:id path', fakeAsync(() => {
-      spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
-      spyOn(router, 'navigate');
+  // describe('click on hacker', () => {
+  //   it('should navigate to the hacker/:id path', fakeAsync(() => {
+  //     spyOn(api, 'getHackers').and.returnValue(Promise.resolve(mockHackers));
+  //     spyOn(router, 'navigate');
 
-      fixture.detectChanges();
-      flush();
-      fixture.detectChanges();
+  //     fixture.detectChanges();
+  //     flush();
+  //     fixture.detectChanges();
 
-      const hackerMonica = fixture.debugElement.queryAll(By.css('tr[app-hacker]'))[0].nativeElement;
-      hackerMonica.click();
+  //     const hackerMonica = fixture.debugElement.queryAll(By.css('tr[app-hacker]'))[0].nativeElement;
+  //     hackerMonica.click();
 
-      expect(router.navigate).toHaveBeenCalledWith(['/hackers/70dd6f38-fd14-4dfd-bd43-3b07586ce49e']);
-    }));
-  });
+  //     expect(router.navigate).toHaveBeenCalledWith(['/hackers/70dd6f38-fd14-4dfd-bd43-3b07586ce49e']);
+  //   }));
+  // });
 
 });
