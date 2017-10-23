@@ -10,8 +10,8 @@ export class ApiService {
 
   constructor(public http: Http) { }
 
-  getHackers() {
-    return this.http.get(`${this.baseUrl}/hackers`)
+  getHackers(search: string = '') {
+    return this.http.get(`${this.baseUrl}/hackers?q=${search}`)
       .toPromise()
       .then((res: Response) => res.json());
   }
