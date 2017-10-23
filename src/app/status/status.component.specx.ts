@@ -65,14 +65,4 @@ describe('StatusComponent: Solution', () => {
 
     expect(pulseEl.classList).toContain('green');
   });
-
-  it('should output a new message when clicked', () => {
-    const statusContainer = fixture.debugElement.query(By.css('.status-pulse')).nativeElement;
-
-    statusContainer.click();
-
-    const status = testHost.updateStatus.calls.first().args[0];
-    expect(status).toBeDefined();
-  });
-
 });

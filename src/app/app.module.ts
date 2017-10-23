@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +15,7 @@ import { StatsComponent } from './stats/stats.component';
 import { ShortDatePipe } from './core/pipes/short-date.pipe.soln';
 import { NonNumericDirective } from './core/directives/non-numeric.directive';
 import { HackerDetailComponent } from './hacker-detail/hacker-detail.component';
+import { HackerSearchComponent } from './hacker-search/hacker-search.component';
 
 @NgModule({
   declarations: [
@@ -27,10 +28,11 @@ import { HackerDetailComponent } from './hacker-detail/hacker-detail.component';
     ShortDatePipe,
     NonNumericDirective,
     HackerDetailComponent,
+    HackerSearchComponent,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

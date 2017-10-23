@@ -5,18 +5,9 @@ import { Component, OnInit, Input } from '@angular/core';
   templateUrl: './hacker.component.html',
   styleUrls: ['./hacker.component.scss']
 })
-export class HackerComponent implements OnInit {
+export class HackerComponent {
   @Input() hacker;
   statusMessage: string;
 
   constructor() { }
-
-  ngOnInit() {
-    this.statusMessage = this.hacker.statusMessage;
-  }
-
-  updateStatus(status) {
-    this.statusMessage = status;
-  }
-
 }

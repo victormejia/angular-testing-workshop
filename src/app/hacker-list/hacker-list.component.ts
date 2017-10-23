@@ -23,4 +23,9 @@ export class HackerListComponent implements OnInit {
     this.router.navigate([`/hackers/${id}`]);
   }
 
+  filterData(term: string) {
+    this.api.getHackers(term)
+      .then(data => this.hackers = data);
+  }
+
 }

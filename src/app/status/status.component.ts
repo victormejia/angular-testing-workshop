@@ -35,9 +35,4 @@ export class StatusComponent implements OnInit {
     }
   }
 
-  refreshStatus(event) {
-    event.stopPropagation();
-    this.newStatus.emit(faker.hacker.phrase());
-  }
-
 }
