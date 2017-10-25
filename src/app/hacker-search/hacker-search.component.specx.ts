@@ -51,7 +51,7 @@ describe('HackerSearchComponent: Solution', () => {
       });
   }));
 
-  it('should emit new search event', () => {
+  it('should emit new search event', async(() => {
     fixture.detectChanges();
 
     const inputEl: HTMLInputElement = fixture.debugElement
@@ -63,6 +63,6 @@ describe('HackerSearchComponent: Solution', () => {
       .then(() => {
         expect(testHost.filterData).toHaveBeenCalledWith('Kathlyn');
       });
-  });
+  }));
 
 });

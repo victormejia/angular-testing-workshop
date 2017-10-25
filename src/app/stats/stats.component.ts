@@ -22,7 +22,7 @@ export class StatsComponent implements AfterViewInit {
       data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June'],
         datasets: [{
-          label: 'hacks',
+          label: 'operations',
           // backgroundColor: 'rgb(255, 99, 132)',
           borderColor: '#5DB4B7',
           data: [12, 10, 7, 22, 20, 25],
@@ -64,7 +64,7 @@ export class StatsComponent implements AfterViewInit {
         },
         title: {
           display: true,
-          text: '2017 Hacks',
+          text: '2017 Operations',
           fontFamily: '"Titillium Web", sans-serif'
         }
     }

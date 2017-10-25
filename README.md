@@ -1,4 +1,4 @@
-# Fluent Conf 2017 Workshop: Turbocharged Testing With Angular
+# Angular Unit Testing Workshop
 
 You've been tasked to deliver a high-quality, well-tested dashboard to track The Grid's most prominent hackers! We will be learning all about unit testing Angular apps.
 
@@ -13,19 +13,24 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Tools Needed
   * Git
-  * Node (at least 6.10)
-  * npm (at least 3.10)
+  * Node (8.x)
+  * npm (5.x)
+  * Angular CLI: `npm install -g @angular/cli`
   * latest Google Chrome
-  * latest Google Chrome Canary (important!)
   * GitHub account
-  * Visual Studio Code editor
+   * **highly** recommend downloading Visual Studio Code: https://code.visualstudio.com/
+    * install the following extensions:
+    * [EditorConfig](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+    * [TSLint](https://marketplace.visualstudio.com/items?itemName=eg2.tslint)
+    * [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
+    * [vscode-icons](https://marketplace.visualstudio.com/items?itemName=robertohuertasm.vscode-icons)
 
 ### Configure Project
 You will need to do the following:
   * fork this repo to your GitHub account
   * clone your fork locally
   * Globally install the Angular CLI: `npm install -g @angular/cli`
-  * inside `fluent-angular-testing-workshop`, install dependencies: `npm install`
+  * inside `angular-testing-workshop`, install dependencies: `npm install`
 
 ### Verify
 
@@ -46,7 +51,7 @@ The following commands should work:
 We will be working on a new branch and working through the modules. In the last module, we will be opening a pull request and using TravisCI to run our builds.
 
 ### Exercises and Solution
-The empty exercise files you'll be completing end in `*.spec.ts`. The solutions are right next to the file, which are named `*.specx.ts`. If you to switch between running your specs vs. the solution, in `src/app.test.ts`, change the regex for the specs to:
+The empty exercise files you'll be completing end in `*.spec.ts`. The solutions are right next to the file, which are named `*.specx.ts`. If you to switch between running your specs vs. the solution, in `src/app.test.ts` change the regex for the specs to:
 
 ```js
 const context = require.context('./', true, /\.specx\.ts$/);
@@ -395,24 +400,26 @@ Write a spec `'should render a different hacker link title'`.
 <details>
   <summary>Details</summary>
 
-**Code**: `src/app/status`
+**Code**:
+  * `src/app/status`
+  * `src/app/hacker-search
 
 In this module, we will learn how to test components with inputs and outputs. The best way to test this kind of components is by using a *test host component*. Essentially, in your test you create a parent component which houses the component you want to test. This way, it's very easy to feed it inputs, and to listen for any output events.
 
-We will be looking at the `StatusComponent`, which has the following behavior:
+We will first be looking at the `StatusComponent`, which displays a small circle indicating the status of the hacker. Green for "safe", yellow for "warning", and red for "danger".
 
-![status component](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/status-component.gif)
+![status component](https://raw.githubusercontent.com/victormejia/angular-testing-workshop/master/screenshots/status.png)
 
 This is how it is used:
 
 ```html
-<app-status [status]="hacker.status" (newStatus)="updateStatus($event)"></app-status>
+<app-status [status]="hacker.status"></app-status>
 ```
 
-It takes in as input a `status` which can be `'danger'`, `'safe'`, or `'warning'`. It also exposes a `newStatus` event, and whenever fired, it will call the specified function with the new message. If we take a look at the `StatusComponent` class and template, the `newStatus` event will get emitted when the status component is clicked on.
+It takes in as input a `status` which can be `'danger'`, `'safe'`, or `'warning'`. If we take a look at the `StatusComponent`, the input status gets mapped to a CSS class, which is then used to style the small circle.
 
 ```html
-<div class="status-pulse" (click)="refreshStatus()">
+<div class="status-pulse">
   <span class="pulse" [ngClass]="color"></span>
   <span class="dot" [ngClass]="color"></span>
 </div>
@@ -422,15 +429,14 @@ With this knowledge, let's create a test host component:
 
 ```js
 @Component({
-  template: '<app-status [status]="appStatus" (newStatus)="updateStatus($event)"></app-status>'
+  template: '<app-status [status]="appStatus"></app-status>'
 })
 class TestHostComponent {
   appStatus: string;
-  updateStatus = jasmine.createSpy('statusSpy');
 }
 ```
 
-For the `TestBed` configuration, we will include both the `StatusComponent` and the `TestHostComponent` in the declarations. We then obtain a fixture on the test host component, and the test host component instance. Do not call `fixture.detectChanges` here since that will trigger the `ngOnInit` method.
+For the `TestBed` configuration, we will include both the `StatusComponent` and the `TestHostComponent` in the declarations. We then obtain a fixture on the test host component, and the test host component instance. Do not call `fixture.detectChanges` here since that will trigger the `ngOnInit` method, which will return the incorrect class since we haven't fed any input to the `StatusComponent`.
 
 ```js
 let testHost: TestHostComponent;
@@ -451,24 +457,93 @@ beforeEach(() => {
 
 With the setup out of the way, we are now ready to write some tests.
 
-### Tasks:
+### Tasks (Part A):
 
 Complete the following tests:
   * `should set pulse color to green when input is "safe"`
   * `should set pulse color to yellow when input is "warning"`
   * `should set pulse color to red when input is "danger"`
   * `should set pulse color to green when input is undefined`
-  * `should output a new message when clicked`
 
 For the first four tests, you want to follow these steps:
   * Arrange: set the `appStatus` property on the test host component to what you are currently testing, so something like `'safe'`
   * Act: trigger a change detection cycle (`fixture.detectChanges()`), and get a reference to the element with class of `.pulse`. Use the `fixture.debugElement.query()` utility, and `By.css()`. This would look something like `fixture.debugElement.query(By.css('.pulse')).nativeElement`
   * Assert: You can then assert things about the `classList` property of the element.
 
-For the last test:
-  * Arrange: get a reference to the main container with class `.status-pulse`
-  * Act: simulate a `click()`
-  * Assert: the `testHost.updateStatus` function/spy should have been called. You can also assert things about the argument.
+We now need to take a look at testing components with outputs, and we will be working with the `HackerSearch` component. This component renders an input, and uses the `ReactiveFormsModule` in order to easily debounce changes to the input value. Once the user stops typing something in, it will emit a `newSearch` event.
+
+![hacker search](https://raw.githubusercontent.com/victormejia/angular-testing-workshop/master/screenshots/search.gif)
+
+This is how it is used:
+
+```html
+<app-hacker-search (newSearch)="filterData($event)"></app-hacker-search>
+```
+
+The parent component must have a `filterData` method which will be called with the new search term as the argument. If we take a peek at the implementation in the `HackerSearch` component, we can know when this gets emitted:
+
+```js
+ngOnInit() {
+  this.searchTerm
+    .valueChanges
+    .debounceTime(500)
+    .subscribe(term => {
+      this.newSearch.emit(term);
+    });
+}
+```
+
+When testing this component, we can create a test host component:
+
+```js
+@Component({
+  template: '<app-hacker-search (newSearch)="filterData($event)"></app-hacker-search>'
+})
+class TestHostComponent {
+  filterData = jasmine.createSpy('filterDataSpy');
+}
+```
+
+`filterData` is simply a spy which we can use to verify that the method on the host component was called when input changed on the `HackerSearch` component.
+
+For the TestBed configuration, we will include both the `HackerSearchComponent` and the `TestHostComponent` in the declarations. We then obtain a fixture on the test host component, and the test host component instance.
+
+```js
+let testHost: TestHostComponent;
+let fixture: ComponentFixture<TestHostComponent>;
+
+beforeEach(async(() => {
+  TestBed.configureTestingModule({
+    imports: [ReactiveFormsModule],
+    declarations: [ HackerSearchComponent, TestHostComponent ]
+  })
+  .compileComponents();
+}));
+
+beforeEach(() => {
+  fixture = TestBed.createComponent(TestHostComponent);
+  testHost = fixture.componentInstance;
+});
+```
+
+### Tasks (Part B):
+
+Complete the following test:
+  * `'should emit new search event'`
+
+Your strategy for testing this component should be the following:
+  * trigger change detection cycle to create child component (`fixture.detectChanges()`)
+  * Use the `fixture.debugElement` to `query` for the `input` element using the `By.css` utility
+  * set the value of this input and dispatch a new `'input'` event (`inputEl.dispatchEvent(new Event('input'));`)
+  * assert that the `filterData` method was called
+
+Since we are doing asynchronous work, we need to use the `async` testing utility along with the `fixture.whenStable()` utility. We will be covering this more in depth in the next module, but for now just understand that the `async` function wraps a test function in an asynchronous test zone. The test will automatically complete when all asynchronous calls within this zone are done. The `fixture.whenStable()` can be used to write specs after asynchronous activity or change detection has completed.
+
+```js
+it('should emit new search event', async(() => {
+
+}));
+```
 </details>
 
 ## Module 5: Testing Components with (Async) Service dependencies
@@ -1006,20 +1081,13 @@ Head over to [TravisCI](https://travis-ci.org/) and sign in with your GitHub acc
 
 ```yml
 dist: trusty
-sudo: required
+addons:
+  chrome: stable
 language: node_js
 node_js:
-  - '6'
-addons:
-  apt:
-    packages:
-      - google-chrome-beta
-env:
-  - CHROME_CANARY_BIN=/usr/bin/google-chrome-beta
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start &
-  - sleep 3
+  - '8'
+before_install:
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 install:
   - npm install
   - npm install -g codecov
@@ -1028,7 +1096,7 @@ script:
   - codecov -f coverage/coverage-final.json
 ```
 
-There is a a lot going on here. We are instructing TravisCI to use Ubuntu Trusty, Node 6.x, and further instructions to in order to get Chrome Canary headless running. In addition, we will be using [codecov.io](https://codecov.io/) in order to provide coverage reports for us. It works out of the box with TravisCI, simply sign up using your GitHub account.
+There is a a lot going on here. We are instructing TravisCI to use Ubuntu Trusty, Node 8.x, and further instructions to in order to get Chrome headless running. In addition, we will be using [codecov.io](https://codecov.io/) in order to provide coverage reports for us. It works out of the box with TravisCI, simply sign up using your GitHub account.
 
 Once you open a PR or push any branch, it will trigger a TravisCI build:
 
