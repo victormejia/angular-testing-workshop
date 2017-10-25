@@ -9,7 +9,7 @@ You've been tasked to deliver a high-quality, well-tested dashboard to track The
 <details>
   <summary>Details</summary>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.6.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.9.
 
 ### Tools Needed
   * Git
