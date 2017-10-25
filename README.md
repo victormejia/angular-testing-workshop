@@ -402,7 +402,7 @@ Write a spec `'should render a different hacker link title'`.
 
 **Code**:
   * `src/app/status`
-  * `src/app/hacker-search
+  * `src/app/hacker-search`
 
 In this module, we will learn how to test components with inputs and outputs. The best way to test this kind of components is by using a *test host component*. Essentially, in your test you create a parent component which houses the component you want to test. This way, it's very easy to feed it inputs, and to listen for any output events.
 
