@@ -72,10 +72,10 @@ The [Angular Testing Guide](https://angular.io/guide/testing) puts it very clear
   * They reveal mistakes in design and implementation. Tests force us to look at our code from many angles and also make your code more modular.
 
 ### Jasmine
-  * A BDD framework for JS code
+  * A unit testing framework for JavaScript
   * standalone, no DOM required
   * Clean syntax: describe, it, expect
-  * Others: Mocha, QUnit, Jest (Facebook)
+  * Others: Mocha, QUnit, Jest, Ava
   * Often used with a mocking library like Sinon
 
 ### Sample Module
