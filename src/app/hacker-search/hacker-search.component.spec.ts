@@ -61,7 +61,7 @@ describe('HackerSearchComponent', () => {
     // the value of the form control is what is expected
   }));
 
-  xit('should emit new search event', () => {
+  xit('should emit new search event', async(() => {
     // Arrange
     // trigger change detection cycle for component
     // use fixure.debugElement to query for the input (use .query and By.css)
@@ -78,5 +78,5 @@ describe('HackerSearchComponent', () => {
 
     // use the fixture.whenStable method and assert that
     // the test host's "filterData" spy was called with the correct argument
-  });
+  }));
 });
