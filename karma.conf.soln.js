@@ -10,9 +10,9 @@ module.exports = function (config) {
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('karma-istanbul-threshold'),
       require('@angular/cli/plugins/karma'),
-      require('karma-spec-reporter')
+      require('karma-spec-reporter'),
+      require('karma-istanbul-threshold')
     ],
     client:{
       clearContext: false // leave Jasmine Spec Runner output visible in browser
