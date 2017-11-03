@@ -22,7 +22,7 @@ describe('ApiService: Solution', () => {
 
       service.getHackers()
         .then(data => {
-          expect(httpSpy.get).toHaveBeenCalledWith('/api/hackers');
+          expect(httpSpy.get).toHaveBeenCalledWith('/api/hackers?q=');
           expect(data).toEqual(mockHackers);
           done();
         });
