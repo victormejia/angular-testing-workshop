@@ -71,11 +71,6 @@ describe('HackerSearchComponent', () => {
     // dispatch event using "new Event('input')" as argument
 
     // Assert
-    // get the component instance using the injector
-    // const comp = fixture.debugElement
-                  // .query(By.directive(HackerSearchComponent))
-                  // .injector.get(HackerSearchComponent);
-
     // use the fixture.whenStable method and assert that
     // the test host's "filterData" spy was called with the correct argument
   }));

@@ -77,7 +77,7 @@ xdescribe('HackerListComponent', () => {
     // Arrange: spy on api.getHackers to return Promise.resolve({mockHackers})
 
     // Act:
-    // rigger ngOnInit through fixture.detectChanges()
+    // trigger ngOnInit through fixture.detectChanges()
     // call the flush function
     // trigger a change detection cycle: fixture.detectChanges()
 

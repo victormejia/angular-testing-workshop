@@ -46,9 +46,8 @@ describe('ApiService: Solution', () => {
         .then(data => {
           expect(httpSpy.get).toHaveBeenCalledWith(`/api/hackers/${id}`);
           expect(data).toEqual(mockHackers[0]);
+          done();
         });
-
-      done();
     });
 
   });
