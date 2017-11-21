@@ -12,7 +12,7 @@ import { HackerComponent } from './hacker/hacker.component';
 import { ApiService } from './core/services/api.service';
 import { StatusComponent } from './status/status.component';
 import { StatsComponent } from './stats/stats.component';
-import { ShortDatePipe } from './core/pipes/short-date.pipe.soln';
+import { ShortDatePipe } from './core/pipes/short-date.pipe';
 import { NonNumericDirective } from './core/directives/non-numeric.directive';
 import { HackerDetailComponent } from './hacker-detail/hacker-detail.component';
 import { HackerSearchComponent } from './hacker-search/hacker-search.component';
