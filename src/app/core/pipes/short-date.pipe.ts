@@ -19,7 +19,7 @@ export class ShortDatePipe implements PipeTransform {
     const dayDisplay = day < 10 ? '0' + day : day;
     const timeDisplay = this.getTimeDisplay(hour, minutes);
 
-    return `${monthDisplay}/${dayDisplay}/${year} ${timeDisplay}`;
+    return `${monthDisplay}/${dayDisplay}/${year}, ${timeDisplay}`;
   }
 
   getTimeDisplay(hour: number, minutes: number) {
