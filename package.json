@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "precommit": "npm run lint",
+    "prepush": "npm test",
     "ng": "ng",
     "start": "run-p start:server start:client",
     "start:client": "ng serve --proxy-config proxy.conf.json --open",
