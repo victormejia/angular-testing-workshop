@@ -1,5 +1,7 @@
 # Angular Unit Testing Workshop
 
+Workshop material for: https://www.safaribooksonline.com/live-training/courses/angular-unit-testing-techniques/0636920106197/
+
 You've been tasked to deliver a high-quality, well-tested dashboard to track The Grid's most prominent hackers! We will be learning all about unit testing Angular apps.
 
 ![app](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/app-screenshot.png)
