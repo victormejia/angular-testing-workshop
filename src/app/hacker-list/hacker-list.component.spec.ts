@@ -45,7 +45,7 @@ xdescribe('HackerListComponent', () => {
 
   describe('initial display', () => {
     xit('makes a call to api.getHackers', () => {
-      // Arrange: spy on api.getHackers to return Promise.resolve({})
+      // Arrange: spy on api.getHackers to return Promise.resolve([])
 
       // Act: trigger ngOnInit through fixture.detectChanges()
 
@@ -54,7 +54,7 @@ xdescribe('HackerListComponent', () => {
     });
 
     xit('sets initial data (using async)', async(() => {
-      // Arrange: spy on api.getHackers to return Promise.resolve({mockHackers})
+      // Arrange: spy on api.getHackers to return Promise.resolve(mockHackers)
 
       // Act: trigger ngOnInit through fixture.detectChanges()
 
@@ -63,7 +63,7 @@ xdescribe('HackerListComponent', () => {
     }));
 
     xit('sets initial data (using fakeAsync)', fakeAsync(() => {
-      // Arrange: spy on api.getHackers to return Promise.resolve({mockHackers})
+      // Arrange: spy on api.getHackers to return Promise.resolve(mockHackers)
 
       // Act: trigger ngOnInit through fixture.detectChanges()
       // call the flush function

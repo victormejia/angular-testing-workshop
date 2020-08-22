@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-hacker-search',
@@ -17,7 +17,7 @@ export class HackerSearchComponent implements OnInit {
   ngOnInit() {
     this.searchTerm
       .valueChanges
-      .debounceTime(500)
+      .pipe(debounceTime(500))
       .subscribe(term => {
         this.newSearch.emit(term);
       });

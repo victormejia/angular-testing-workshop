@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HackerDetailComponent } from './hacker-detail.component';
-import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute } from '@angular/router';
 import { mockHackers } from '../core/helpers.spec';
 import { ApiService } from '../core/services/api.service';
-import 'rxjs/add/observable/of';
+import { of } from 'rxjs';
 
 describe('HackerDetailComponent: Solution', () => {
   let component: HackerDetailComponent;
@@ -17,7 +16,7 @@ describe('HackerDetailComponent: Solution', () => {
   };
 
   const mockActivatedRoute = {
-    params: Observable.of({ id: 'f1b2e9bf-2794-4ccf-a869-9ddb93478f70'})
+    params: of({ id: 'f1b2e9bf-2794-4ccf-a869-9ddb93478f70'})
   };
 
   beforeEach(async(() => {

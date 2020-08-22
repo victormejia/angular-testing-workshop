@@ -43,7 +43,7 @@ describe('HackerListComponent: Solution', () => {
   describe('initial display', () => {
 
     it('makes a call to api.getHackers', () => {
-      spyOn(api, 'getHackers').and.returnValue(Promise.resolve({}));
+      spyOn(api, 'getHackers').and.returnValue(Promise.resolve([]));
 
       fixture.detectChanges();
 
