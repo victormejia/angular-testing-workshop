@@ -11,12 +11,12 @@ You've been tasked to deliver a high-quality, well-tested dashboard to track The
 <details>
   <summary>Details</summary>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.7.
 
 ### Tools Needed
   * Git
-  * Node (8.x)
-  * npm (5.x)
+  * Node (12.x)
+  * npm (6.x)
   * Angular CLI: `npm install -g @angular/cli`
   * latest Google Chrome
   * GitHub account
@@ -286,7 +286,7 @@ We will test drive the implementation of a `scoreCalculator` function (sums up s
 <details>
   <summary>Details</summary>
 
-Inside the Angular project, running `ng test --single-run --code-coverage` will output something like this:
+Inside the Angular project, running `ng test --no-watch --code-coverage` will output something like this:
 
 ![terminal](https://raw.githubusercontent.com/victormejia/fluent-angular-testing-workshop/master/screenshots/Screen%20Shot%202017-06-07%20at%202.57.12%20PM.png)
 
@@ -368,7 +368,7 @@ it('should render two menu items', () => {
 });
 ```
 
-We use the `debugElement`'s `queryAll` method to retrieve all `DebugElements` that satisfy the search, and using the `By.css` utitlity.
+We use the `debugElement`'s `queryAll` method to retrieve all `DebugElement`s that satisfy the search, and using the `By.css` utitlity.
 
 Running this, you will get an error:
 
@@ -488,7 +488,7 @@ The parent component must have a `filterData` method which will be called with t
 ngOnInit() {
   this.searchTerm
     .valueChanges
-    .debounceTime(500)
+    .pipe(debounceTime(500))
     .subscribe(term => {
       this.newSearch.emit(term);
     });
@@ -697,16 +697,14 @@ export class ApiService {
 
   constructor(public http: Http) { }
 
-  getHackers() {
-    return this.http.get(`${this.baseUrl}/hackers`)
-      .toPromise()
-      .then((res: Response) => res.json());
+  getHackers(search: string = '') {
+    return this.http.get<Hacker[]>(`${this.baseUrl}/hackers?q=${search}`)
+      .toPromise();
   }
 
   getHackerDetails(id: string) {
-    return this.http.get(`${this.baseUrl}/hackers/${id}`)
-      .toPromise()
-      .then((res: Response) => res.json());
+    return this.http.get<Hacker>(`${this.baseUrl}/hackers/${id}`)
+      .toPromise();
   }
 }
 ```
@@ -748,7 +746,7 @@ Note here that we are using the Jasmine built-in done function. This suffices fo
 
 ### Tasks
 Write the following unit tests for both the `getHackers` and `getHackerDetails` of the `ApiService`.
-  * `getHackers`: `'should return list of hackers'`: You should assert that `http.get` gets called with `'/api/hackers'`, and the data returned is the mock data.
+  * `getHackers`: `'should return list of hackers'`: You should assert that `http.get` gets called with `'/api/hackers?q='`, and the data returned is the mock data.
   * `getHackerDetails`: `'should return hacker details given hacker id'`: You should assert that `http.get` gets called with `'/api/hackers/${id}''`, and the data returned is the mock data.
 
 </details>
@@ -934,11 +932,11 @@ const mockApiService = {
 };
 
 const mockActivatedRoute = {
-  params: Observable.of({ id: 'f1b2e9bf-2794-4ccf-a869-9ddb93478f70'})
+  params: of({ id: 'f1b2e9bf-2794-4ccf-a869-9ddb93478f70'})
 };
 ```
 
-Using `Observable.of()` is a very convinient way of wrapping objects into an observable.
+Using `of()` is a very convinient way of wrapping objects into an observable.
 
 When configuring the `TestBed`, for the providers you instruct Angular to use these when the service dependencies are injected:
 
@@ -969,13 +967,13 @@ There are specific things that as a developer and tester and you can do to creat
 The Angular CLI generates a project for you with testing included out of the box. It's a good idea to generate code coverage reports when you run your tests:
 
 ```
-ng test --single-run --codecoverage
+ng test --no-watch --code-coverage
 ```
 
 Better yet, create an npm script for this:
 
 ```
-"test": "ng test --single-run --code-coverage"
+"test": "ng test --no-watch --code-coverage"
 ```
 
 and also a script to watch your tests automatically:
@@ -990,63 +988,37 @@ Also, configure terminal reporting (refer to Module 2 above).
 
 There are mixed opinions on whether or not you should enforce coverage thresholds. Sure, a codebase of 99% coverage may not necessarily mean that your code is bug free, but tested code is one major step in the way of producing clean code. Enforcing coverage thresholds will promote testability among your team (specially if your team is new to testing), and you can ensure that untested code is not making its way to your codebase.
 
-Install the `karma-istanbul-threshold` module:
-
-```
-npm i karma-istanbul-threshold --save-dev
-```
-
-and add it to the plugins in `karma.conf.js`:
-
-```js
-plugins: [
-  require('karma-jasmine'),
-  require('karma-chrome-launcher'),
-  require('karma-jasmine-html-reporter'),
-  require('karma-coverage-istanbul-reporter'),
-  require('karma-istanbul-threshold'),
-  require('@angular/cli/plugins/karma'),
-  require('karma-spec-reporter')
-],
-```
-
 add the `'json'` reporter to the `coverageIstanbulReporter` object:
 
 ```js
 coverageIstanbulReporter: {
   reports: [ 'html', 'lcovonly', 'json', 'text-summary' ],
-  fixWebpackSourcePaths: true
 },
 ```
 
-add the `'istanbul-threshold'` reporter:
+and configure the thresholds:
 
 ```js
-reporters: config.angularCli && config.angularCli.codeCoverage
-            ? ['spec', 'coverage-istanbul', 'istanbul-threshold']
-            : ['spec', 'kjhtml'],
-```
-
-and finally, configure the thresholds:
-
-```js
-istanbulThresholdReporter: {
- src: 'coverage/coverage-final.json',
- reporters: ['text'],
- thresholds: {
-   global: {
-     statements: 90,
-     branches: 65,
-     lines: 90,
-     functions: 90,
-   },
-   each: {
-     statements: 80,
-     branches: 60,
-     lines: 60,
-     functions: 80,
-   },
- }
+coverageIstanbulReporter: {
+  dir: require('path').join(__dirname, './coverage/fluent-angular-testing'),
+  thresholds: {
+    // set to `true` to let the test command pass when thresholds are not met
+    emitWarning: false,
+    // thresholds for all files
+    global: {
+      statements: 90,
+      lines: 90,
+      branches: 90,
+      functions: 90
+    },
+    // thresholds per file
+    each: {
+      statements: 80,
+      lines: 60,
+      branches: 60,
+      functions: 80,
+    }
+  },
 },
 ```
 

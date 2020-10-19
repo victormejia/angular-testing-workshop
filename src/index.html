@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <title>FluentAngularTesting</title>
   <base href="/">
-
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 </head>
 <body>
   <app-root>Loading...</app-root>
+  <!-- End-to-end tests break if this is loaded through the `scripts` build option in `angular.json` -->
+  <script src="assets/particles.js"></script>
 </body>
 </html>

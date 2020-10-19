@@ -1,7 +1,7 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,9 +32,9 @@ import { HackerSearchComponent } from './hacker-search/hacker-search.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
     ReactiveFormsModule,
-    HttpModule,
-    AppRoutingModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
